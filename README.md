@@ -1,16 +1,63 @@
-# React + Vite
+# 🚀 Volunteer Management System (Backend API)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple backend system for managing volunteer posts and requests.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🌐 Live https://your-backend-url.vercel.app
 
-## React Compiler
+## 🧠 What this project does
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Create volunteer posts
+- View all posts
+- Update and delete posts
+- Users can apply as volunteers
+- Prevent duplicate applications
+- Automatically manage available volunteer slots
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Technologies Used
+
+- Node.js
+- Express.js
+- MongoDB
+- CORS
+- dotenv
+
+---
+
+## 📡 API Features
+
+### Posts
+- GET /posts
+- GET /posts/:id
+- POST /posts
+- PUT /posts/:id
+- DELETE /posts/:id
+
+### Requests
+- GET /requests
+- POST /requests
+- DELETE /requests/:id
+
+---
+
+## 🧠 Key Logic
+
+- One user = one request per post
+- Volunteers slot decreases when applied
+- Slot increases when request is canceled
+
+---
+
+## 🚀 Deployment
+
+- Vercel ready (serverless backend)
+
+---
+
+## 👨‍💻 Author
+
+Joynul Abedin
+MERN Stack Developer
