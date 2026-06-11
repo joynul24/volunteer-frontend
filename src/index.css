@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-gradient: linear-gradient(135deg, #f43f5e, #f97316);
+  --primary-gradient-hover: linear-gradient(135deg, #e11d48, #ea580c);
+}
+
+@layer components {
+  /* Override Default Daisy UI primary buttons */
+  .btn-primary {
+    background: var(--primary-gradient) !important;
+    border: none !important;
+    color: white !important;
+  }
+  .btn-primary:hover {
+    background: var(--primary-gradient-hover) !important;
+  }
+
+  /* Text gradient overrides */
+  .text-primary, 
+  .group-hover\:text-primary:hover {
+    color: #f43f5e !important;
+  }
+
+  /* Custom utility for the exact linear gradient text */
+  .bg-gradient-to-r.from-primary.to-secondary {
+    background: var(--primary-gradient) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+  }
+
+  /* Border utilities for standard active states */
+  .border-primary {
+    border-color: #f43f5e !important;
+  }
+  .bg-primary {
+    background-color: #f43f5e !important;
+  }
+  .bg-primary\/5 {
+    background-color: rgba(244, 63, 94, 0.05) !important;
+  }
+  .bg-primary\/10 {
+    background-color: rgba(244, 63, 94, 0.1) !important;
+  }
+  .bg-primary\/20 {
+    background-color: rgba(244, 63, 94, 0.2) !important;
+  }
+  .border-primary\/10 {
+    border-color: rgba(244, 63, 94, 0.1) !important;
+  }
+  .border-primary\/20 {
+    border-color: rgba(244, 63, 94, 0.2) !important;
+  }
+}
