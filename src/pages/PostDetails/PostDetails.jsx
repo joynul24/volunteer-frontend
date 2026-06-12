@@ -25,46 +25,81 @@ export default function PostDetails() {
       });
   }, [id]);
 
+  
   const handleRequest = (e) => {
-    e.preventDefault();
-    if(post.volunteersNeeded === 0) {
-       Swal.fire({ icon: 'error', title: 'Full Capacity', text: 'No more volunteers needed for this post.' });
-       return;
-    }
-    const form = e.currentTarget;
-    const requestData = {
-      postId: post._id,
-      postTitle: post.title,
-      thumbnail: post.thumbnail,
-      category: post.category,
-      location: post.location,
-      organizerName: post.organizerName,
-      organizerEmail: post.organizerEmail,
-      volunteerName: auth?.user?.displayName,
-      volunteerEmail: auth?.user?.email,
-      suggestion: form.suggestion.value,
-      status: "requested",
-      deadline: post.deadline
-    };
+  e.preventDefault();
 
-    fetch("https://volunteer-server-smfv.vercel.app/requests", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(requestData)
-    })
-    .then(res => res.json())
-    .then(data => {
-      if(data.insertedId) {
-         Swal.fire({ icon: 'success', title: 'Request Sent', text: 'You have offered to volunteer!' });
-         setPost({...post, volunteersNeeded: post.volunteersNeeded - 1 });
-         document.getElementById("volunteer_modal")?.close();
-      } else {
-         Swal.fire({ icon: 'success', title: 'Simulated Sent', text: 'Request simulated successfully (Backend missing).' });
-         document.getElementById("volunteer_modal")?.close();
+  // 1️⃣ Capacity check
+  if (post.volunteersNeeded === 0) {
+    Swal.fire({
+      icon: "error",
+      title: "Full Capacity",
+      text: "No more volunteers needed for this post.",
+    });
+    return;
+  }
+
+  const form = e.currentTarget;
+
+  const requestData = {
+    postId: post._id,
+    postTitle: post.title,
+    thumbnail: post.thumbnail,
+    category: post.category,
+    location: post.location,
+    organizerName: post.organizerName,
+    organizerEmail: post.organizerEmail,
+    volunteerName: auth?.user?.displayName,
+    volunteerEmail: auth?.user?.email,
+    suggestion: form.suggestion.value,
+    status: "requested",
+    deadline: post.deadline,
+  };
+
+  fetch("https://volunteer-server-smfv.vercel.app/requests", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(requestData),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log("REQUEST RESPONSE:", data);
+
+      // 2️⃣ Success case
+      if (data.insertedId) {
+        Swal.fire({
+          icon: "success",
+          title: "Request Sent",
+          text: "You have offered to volunteer!",
+        });
+
+        setPost({
+          ...post,
+          volunteersNeeded: post.volunteersNeeded - 1,
+        });
+
+        document.getElementById("volunteer_modal")?.close();
+      }
+
+      // 3️⃣ Backend error case (Already requested / No slots etc.)
+      else {
+        Swal.fire({
+          icon: "error",
+          title: "Request Failed",
+          text: data.error || "Something went wrong",
+        });
+
+        document.getElementById("volunteer_modal")?.close();
       }
     })
-    .catch(() => Swal.fire({ icon: 'error', title: 'Error', text: 'Failed to request' }));
-  };
+    .catch(() => {
+      Swal.fire({
+        icon: "error",
+        title: "Network Error",
+        text: "Failed to request. Please try again.",
+      });
+    });
+};
 
   if (loading) return <div className="flex justify-center py-32"><span className="loading loading-spinner text-primary loading-lg"></span></div>;
   if (!post || post.error) return <div className="text-center py-20 text-error font-bold text-2xl">Post not found.</div>;
