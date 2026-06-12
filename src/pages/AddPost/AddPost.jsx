@@ -36,7 +36,7 @@ export default function AddPost() {
       organizerEmail: auth?.user?.email,
     };
 
-    fetch("http://localhost:3000/posts", {
+    fetch("https://volunteer-server-smfv.vercel.app/posts", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(postData)

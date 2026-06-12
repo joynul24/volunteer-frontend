@@ -13,7 +13,7 @@ export default function PostDetails() {
 
   useEffect(() => {
     document.title = "Need Details | VolunCore";
-    fetch(`http://localhost:3000/posts/${id}`)
+    fetch(`https://volunteer-server-smfv.vercel.app/posts/${id}`)
       .then(res => res.json())
       .then(data => {
         setPost(data);
@@ -47,7 +47,7 @@ export default function PostDetails() {
       deadline: post.deadline
     };
 
-    fetch("http://localhost:3000/requests", {
+    fetch("https://volunteer-server-smfv.vercel.app/requests", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(requestData)

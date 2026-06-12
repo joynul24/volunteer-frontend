@@ -15,7 +15,7 @@ export default function AllPosts() {
 
   const fetchPosts = () => {
     setLoading(true);
-    let url = "http://localhost:3000/posts";
+    let url = "https://volunteer-server-smfv.vercel.app/posts";
     if (search) url += `?search=${search}`;
     
     fetch(url)

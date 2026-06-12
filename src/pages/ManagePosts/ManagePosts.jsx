@@ -25,13 +25,13 @@ export default function ManagePosts() {
     if (!auth?.user?.email) return;
 
     // Fetch Needs
-    fetch(`http://localhost:3000/posts/my-posts?email=${auth.user.email}`)
+    fetch(`https://volunteer-server-smfv.vercel.app/posts/my-posts?email=${auth.user.email}`)
       .then(res => res.json())
       .then(data => setMyPosts(data))
       .catch(err => console.error(err));
 
     // Fetch Requests
-    fetch(`http://localhost:3000/requests?email=${auth.user.email}`)
+    fetch(`https://volunteer-server-smfv.vercel.app/requests?email=${auth.user.email}`)
       .then(res => res.json())
       .then(data => {
          setMyRequests(data);
@@ -54,7 +54,7 @@ export default function ManagePosts() {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/posts/${id}`, { method: 'DELETE' })
+        fetch(`https://volunteer-server-smfv.vercel.app/posts/${id}`, { method: 'DELETE' })
           .then(res => res.json())
           .then(data => {
             if (data.deletedCount > 0 || data.error === undefined) {
@@ -77,7 +77,7 @@ export default function ManagePosts() {
       confirmButtonText: 'Yes, Cancel'
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/requests/${id}`, { method: 'DELETE' })
+        fetch(`https://volunteer-server-smfv.vercel.app/requests/${id}`, { method: 'DELETE' })
           .then(res => res.json())
           .then(data => {
             if (data.deletedCount > 0 || data.error === undefined) {
@@ -110,7 +110,7 @@ export default function ManagePosts() {
       deadline: startDate,
     };
 
-    fetch(`http://localhost:3000/posts/${currentEdit._id}`, {
+    fetch(`https://volunteer-server-smfv.vercel.app/posts/${currentEdit._id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(postData)

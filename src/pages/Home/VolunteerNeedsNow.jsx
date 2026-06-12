@@ -8,7 +8,7 @@ export default function VolunteerNeedsNow() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3000/posts?limit=6")
+    fetch("https://volunteer-server-smfv.vercel.app/posts?limit=6")
       .then(res => res.json())
       .then(data => {
         setPosts(data);
