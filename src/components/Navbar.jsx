@@ -97,7 +97,7 @@ export default function Navbar() {
         {auth?.user ? (
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar border-2 border-primary/20 hover:border-primary transition-colors tooltip tooltip-bottom" data-tip={auth.user.displayName || "User"}>
-              <div className="w-10 rounded-full">
+              <div className="w-full rounded-full h-full">
                 {auth.user.photoURL ? (
                     <img src={auth.user.photoURL} alt="User avatar" />
                 ) : (
