@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { FiHeart, FiGithub, FiTwitter, FiLinkedin } from "react-icons/fi";
+import { FiHeart, FiGithub, FiLinkedin } from "react-icons/fi";
+import { FaInstagram } from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -24,9 +25,9 @@ export default function Footer() {
         <div>
           <h3 className="font-bold text-lg mb-4 text-base-content">Connect With Us</h3>
           <div className="flex gap-4">
-            <a href="#" className="btn btn-circle btn-ghost shadow-sm hover:text-primary hover:bg-primary/10 transition-all"><FiGithub className="text-xl" /></a>
-            <a href="#" className="btn btn-circle btn-ghost shadow-sm hover:text-info hover:bg-info/10 transition-all"><FiTwitter className="text-xl" /></a>
-            <a href="#" className="btn btn-circle btn-ghost shadow-sm hover:text-blue-600 hover:bg-blue-600/10 transition-all"><FiLinkedin className="text-xl" /></a>
+            <a href="https://github.com/joynul24" className="btn btn-circle btn-ghost shadow-sm hover:text-primary hover:bg-primary/10 transition-all"><FiGithub className="text-xl" /></a>
+            <a href="https://www.instagram.com/devjoynul/" className="btn btn-circle btn-ghost shadow-sm hover:text-info hover:bg-info/10 transition-all"><FaInstagram className="text-xl"></FaInstagram></a>
+            <a href="https://www.linkedin.com/in/devjoynul" className="btn btn-circle btn-ghost shadow-sm hover:text-blue-600 hover:bg-blue-600/10 transition-all"><FiLinkedin className="text-xl" /></a>
           </div>
           <p className="mt-6 flex items-center gap-2 text-sm text-base-content/60 font-medium">
             Made with <FiHeart className="text-error" /> by Joynul
